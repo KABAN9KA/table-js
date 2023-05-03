@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>про строки в таблице 2</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th {
+            border: 2px solid #000001;
+        }
+        td {
+            border: 2px solid #000001;
+        }
+    </style>
+</head>
+<body>
+
+  <script src="script.js"></script>
+  <script type="text/javascript">
+      let tds = document.querySelectorAll('td');
+
+      for (let i = 0; i < tds.length; i++) {
+          tds[i].addEventListener('click', function func() {
+              let input = document.createElement('input');
+              input.value = this.innerHTML;
+              this.innerHTML = '';
+              this.appendChild(input);
+
+              let td = this;
+              input.addEventListener('blur', function() {
+                  td.innerHTML = this.value;
+                  td.addEventListener('click', func);
+              });
+
+              this.removeEventListener('click', func);
+          });
+      }
+  </script>
+
+</body>
+</html>
